@@ -25,14 +25,26 @@ E2E (Cypress): …
 
 ## Regler
 
-- PR mergas bara när …
-- En buggfix …
-- Vi mockar API:et genom …
-- Täckning: …
+### Pull request regler
 
-## Vad vi medvetet inte testar
+- Om man skriver ny logik, eller ett test, eller fixar en bugg kan man göra en pull request. Inga krav på mängd kod då små commits är bra
 
-…
+### Mock API
+
+- Kikar på det senare
+
+### Vad vi medvetet inte testar
+
+- CSS-selektorer, för att de kan ändras i realtid
+- Externa paket (vue, vitest, chart.js, lodash för att de redan är testade internt)
+
+### Täckningskrav
+
+- 80%
+
+### Namn och placering
+
+- .test.js-fil i samma mapp som orginalkoden för att det är enklare att hitta då
 
 ## Kommandon
 
