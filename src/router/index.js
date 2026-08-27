@@ -19,12 +19,9 @@ const router = createRouter({
 
 // "auth" -- keeps unauthorized users out :)
 router.beforeEach((to) => {
-  if (
-    to.path !== "/login" &&
-    localStorage.getItem("kraftly_logged_in") !== "true"
-  ) {
-    return "/login";
+  if (to.path !== '/login' && localStorage.getItem('kraftly_logged_in') !== 'true') {
+    return '/login'
   }
-});
+})
 
 export default router;
