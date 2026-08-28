@@ -1,7 +1,13 @@
-## Vad gjorde vi?
+## 2026-08-28 · Boiler Room 1
 
-Vi skapade github specifika filer (CODEOWNERS, pull_request_template.md), docs (dokumentering av teknisk skuld i debt.md, working agreement i readme) och familiariserade oss med kodbasen.
+Gjort: Tester
+Grönt:
 
-## Vad var svårt?
+- https://github.com/vbystroem/Team-Ohm_Kraftly-Mina-Sidor/pull/11
+- https://github.com/vbystroem/Team-Ohm_Kraftly-Mina-Sidor/pull/12
+- https://github.com/vbystroem/Team-Ohm_Kraftly-Mina-Sidor/pull/13
+- https://github.com/vbystroem/Team-Ohm_Kraftly-Mina-Sidor/pull/14
 
-Att komma igång igen med kod efter en lång semester.
+Kvar till M1-taggen tisdag: resten av testerna, e2e smoke test, komponenttest(er) etc. Även beslut och mockat nätverk.
+E2E: valde \_\_\_ · smoke + mockat test gröna: N/A
+Fastnat på: Enhetstester
