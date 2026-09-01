@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:run": "vitest run",
-    "e2e": "start-server-and-test api http://localhost:4000/api/user dev http://localhost:5173 \"cypress run\"",
+    "e2e:cy": "start-server-and-test \"npm run api\" http://localhost:4000/api/user \"npm run dev\" http://localhost:5173 \"cypress run\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
