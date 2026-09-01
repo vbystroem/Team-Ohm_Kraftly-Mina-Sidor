@@ -10,8 +10,8 @@ const request = async (path, options = {}) => {
     headers: {
       'Content-Type': 'application/json',
       'X-Api-Key': API_KEY,
-      ...options.headers
-    }
+      ...options.headers,
+    },
   })
   if (!res.ok) {
     console.log('API error', res.status)
@@ -21,7 +21,10 @@ const request = async (path, options = {}) => {
 }
 
 export const login = (email, password) =>
-  request('/api/login', { method: 'POST', body: JSON.stringify({ email, password }) })
+  request('/api/login', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+  })
 
 export const fetchUser = () => request('/api/user')
 

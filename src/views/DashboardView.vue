@@ -1,7 +1,7 @@
 <template>
   <div>
     <img src="../assets/hero.png" class="hero" />
-    <h1 v-if="userStore.user">Hej {{ userStore.user.name.split(" ")[0] }}!</h1>
+    <h1 v-if="userStore.user">Hej {{ userStore.user.name.split(' ')[0] }}!</h1>
     <h1 v-else>Hej!</h1>
 
     <div class="stats">
@@ -16,7 +16,7 @@
       <div class="card stat">
         <div class="stat-label">Avtal</div>
         <div class="stat-value" style="font-size: 20px">
-          {{ userStore.user ? userStore.user.contract : "–" }}
+          {{ userStore.user ? userStore.user.contract : '–' }}
         </div>
       </div>
     </div>
@@ -47,44 +47,40 @@
 
 <script setup>
 // Dashboard. Got a bit big, clean up some day /M
-import _ from "lodash";
-import { computed, onMounted, onBeforeUnmount } from "vue";
-import { useUserStore } from "../stores/user";
-import { useConsumptionStore } from "../stores/consumption";
-import ConsumptionChart from "../components/ConsumptionChart.vue";
-import { firstName } from "../utils/user";
+import _ from 'lodash'
+import { computed, onMounted, onBeforeUnmount } from 'vue'
+import { useUserStore } from '../stores/user'
+import { useConsumptionStore } from '../stores/consumption'
+import ConsumptionChart from '../components/ConsumptionChart.vue'
 
-const userStore = useUserStore();
-const consumptionStore = useConsumptionStore();
+const userStore = useUserStore()
+const consumptionStore = useConsumptionStore()
 
 const latestMonth = computed(() => {
-  var d = consumptionStore.data;
-  return d ? d.values[d.values.length - 1] : "–";
-});
+  var d = consumptionStore.data
+  return d ? d.values[d.values.length - 1] : '–'
+})
 
 const currentPrice = computed(() =>
-  consumptionStore.data ? consumptionStore.data.pricePerKwh : "–",
-);
+  consumptionStore.data ? consumptionStore.data.pricePerKwh : '–',
+)
 
 // debounce on resize, chart.js redraws itself but we log a bit /J
-const onResize = _.debounce(
-  () => console.log("resize", window.innerWidth),
-  300,
-);
+const onResize = _.debounce(() => console.log('resize', window.innerWidth), 300)
 
 onMounted(() => {
-  userStore.load();
-  consumptionStore.load();
-  window.addEventListener("resize", onResize);
-});
+  userStore.load()
+  consumptionStore.load()
+  window.addEventListener('resize', onResize)
+})
 
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", onResize);
-});
+  window.removeEventListener('resize', onResize)
+})
 
 const showTips = () => {
-  alert("Fler spartips kommer snart!");
-};
+  alert('Fler spartips kommer snart!')
+}
 </script>
 
 <style scoped>

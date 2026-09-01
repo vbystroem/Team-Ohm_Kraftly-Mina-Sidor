@@ -1,9 +1,9 @@
 export const formatDate = (date) => {
-  if (!date) return "-";
+  if (!date) return '-'
 
-  const parsedDate = new Date(date);
+  const parsedDate = new Date(date)
 
-  if (Number.isNaN(parsedDate.getTime())) return "-";
+  if (Number.isNaN(parsedDate.getTime())) return '-'
 
-  return parsedDate.toLocaleDateString("sv-SE");
-};
+  return parsedDate.toLocaleDateString('sv-SE')
+}
