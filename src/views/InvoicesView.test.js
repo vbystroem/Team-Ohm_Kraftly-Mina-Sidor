@@ -3,11 +3,11 @@ import { mount } from '@vue/test-utils'
 import InvoicesView from './InvoicesView.vue'
 
 vi.mock('../services/api', () => ({
-  fetchInvoices: vi.fn()
+  fetchInvoices: vi.fn(),
 }))
 
-describe("InvoicesView", () => {
-  it("shows error on API failure", async () => {
+describe('InvoicesView', () => {
+  it('shows error on API failure', async () => {
     const { fetchInvoices } = await import('../services/api')
     fetchInvoices.mockRejectedValue(new Error('API error'))
     const wrapper = mount(InvoicesView)

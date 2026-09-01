@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/vue'
 import '@testing-library/jest-dom/vitest'
 import BaseButton from './BaseButton.vue'
 
-describe("BaseButton", () => {
-  it("renders with an accessible name from its label", () => {
+describe('BaseButton', () => {
+  it('renders with an accessible name from its label', () => {
     render(BaseButton, { slots: { default: 'Click' } })
 
     // getByRole throws if no element matches, and { name } asserts the

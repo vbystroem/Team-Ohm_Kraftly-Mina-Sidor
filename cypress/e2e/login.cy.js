@@ -15,7 +15,9 @@ describe('Login flow', () => {
   it('logs in and reaches the dashboard', () => {
     cy.url().should('include', '/login')
 
-    cy.get('input[placeholder="E-postadress"]').type('anna.andersson@example.com')
+    cy.get('input[placeholder="E-postadress"]').type(
+      'anna.andersson@example.com',
+    )
     cy.get('input[placeholder="Lösenord"]').type('hemligt123')
     cy.contains('button', 'Logga in').click()
 
@@ -32,7 +34,9 @@ describe('Login flow', () => {
 
   it('keeps the session across a reload', () => {
     cy.url().should('include', '/login')
-    cy.get('input[placeholder="E-postadress"]').type('anna.andersson@example.com')
+    cy.get('input[placeholder="E-postadress"]').type(
+      'anna.andersson@example.com',
+    )
     cy.get('input[placeholder="Lösenord"]').type('hemligt123')
     cy.contains('button', 'Logga in').click()
     cy.url().should('eq', Cypress.config('baseUrl') + '/')

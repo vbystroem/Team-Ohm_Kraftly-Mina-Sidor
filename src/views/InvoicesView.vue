@@ -40,25 +40,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { fetchInvoices } from "../services/api";
-import { formatCurrency } from "../utils/format";
+import { ref, onMounted } from 'vue'
+import { fetchInvoices } from '../services/api'
+import { formatCurrency } from '../utils/format'
 
-const invoices = ref([]);
-const error = ref(null);
+const invoices = ref([])
+const error = ref(null)
 
 onMounted(async () => {
   try {
-    invoices.value = await fetchInvoices();
+    invoices.value = await fetchInvoices()
   } catch (err) {
-    error.value = err.message;
+    error.value = err.message
   }
-});
+})
 
 const downloadInvoice = (invoice) => {
-  console.log("download", invoice.id);
-  alert("Nedladdning kommer snart");
-};
+  console.log('download', invoice.id)
+  alert('Nedladdning kommer snart')
+}
 </script>
 
 <style scoped>

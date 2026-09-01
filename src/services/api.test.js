@@ -5,19 +5,19 @@ beforeEach(() => {
   global.fetch = vi.fn()
 })
 
-describe("API", () => {
-  it("calls fetchUser endpoint", async () => {
+describe('API', () => {
+  it('calls fetchUser endpoint', async () => {
     fetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve({ name: "Test" })
+      json: () => Promise.resolve({ name: 'Test' }),
     })
     const result = await fetchUser()
-    expect(result.name).toBe("Test")
+    expect(result.name).toBe('Test')
   })
-  it("calls fetchConsumption endpoint", async () => {
+  it('calls fetchConsumption endpoint', async () => {
     fetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve({ values: [100] })
+      json: () => Promise.resolve({ values: [100] }),
     })
     const result = await fetchConsumption()
     expect(result.values).toEqual([100])
