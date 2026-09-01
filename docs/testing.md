@@ -10,19 +10,39 @@ E2E (Cypress): …
 
 (tabellen från del 1, ifylld)
 
-| Del av portalen     | Nivå            | Varför?                                                                          | Finns test? |
-| ------------------- | --------------- | -------------------------------------------------------------------------------- | ----------- |
-| Prisformatering     | Enhet           | Bara små funktioner                                                              | Nej         |
-| Förnämn i hälsning  | Enhet           | inte en komponent                                                                | Nej         |
-| Fakturastatus       | Enhet           | Logiken bakom en komponent                                                       |
-| Validering          | Komponent       | en hel view, men ändå bättre som komponent för att vi inte vill ha för många E2E | Nej         |
-| StatusChip          | Komponent       | har flera states                                                                 | Nej         |
-| Flyttformulär       | Komponent       | funkar bra som komponenttest                                                     | Nej         |
-| Förbrukning diagram | Bör inte testas | är del av charts.js vilket är maintained externt                                 | Nje         |
-| Stores              | Enhet           | små funktioner                                                                   | Nej         |
-| API-klient          | Enhet           | småfunktioner                                                                    | Nej         |
-| Login               | E2E             | en hel användarresa                                                              | Nej         |
-| Navigation          | E2E             | går inte att få plats i individuella test, värt att testa                        | Nej         |
+| Del av portalen     | Nivå            | Varför?                                                   | Finns test?                                |
+| ------------------- | --------------- | --------------------------------------------------------- | ------------------------------------------ |
+| Prisformatering     | Enhet           | Bara små funktioner                                       | Ja (`format.test.js`)                      |
+| Förnamn i hälsning  | Enhet           | inte en komponent                                         | Ja (`user.test.js`)                        |
+| Fakturastatus       | Enhet           | Logiken bakom en komponent                                | Nej (renderas inline i InvoicesView)       |
+| Validering          | Enhet           | ren funktion utan DOM — se not nedan                      | Ja (`validateMove.test.js`)                |
+| StatusChip          | Komponent       | har flera states                                          | Nej (komponenten finns inte — se not)      |
+| Flyttformulär       | Komponent       | funkar bra som komponenttest                              | Nej                                        |
+| Förbrukning diagram | Bör inte testas | är del av charts.js vilket är maintained externt          | Nej                                        |
+| Stores              | Enhet           | små funktioner                                            | Ja (`user.test.js`, `consumption.test.js`) |
+| API-klient          | Enhet           | småfunktioner                                             | Ja (`api.test.js`)                         |
+| Login               | E2E             | en hel användarresa                                       | Ja (`login.cy.js`)                         |
+| Navigation          | E2E             | går inte att få plats i individuella test, värt att testa | Delvis (täcks indirekt av login.cy.js)     |
+
+### Noter till tabellen
+
+- **Validering — ändrad från Komponent till Enhet.** Ursprungligen planerad som komponenttest av
+  `MoveFormView`, men efter att vi började märkte vi att `validateMove` är en ren funktion utan
+  DOM-beroende och passar bättre som ett enhetstest. Ett komponenttest av själva formulärvyn
+  ligger kvar som önskemål menprioriterades bort inför M1.
+- **StatusChip — komponenten finns inte.** Status renderas inline i `InvoicesView.vue` som en
+  `<span class="status-chip">`, inte som en separat återanvändbar komponent. Raden ligger kvar
+  som påminnelse om att antingen extrahera komponenten (och sedan testa den) eller ta bort
+  raden. I nuläget finns inget att testa isolerat.
+- **Fakturastatus — inget separat test.** Statuslogiken (Betald/Obetald) sitter i mallen i
+  `InvoicesView.vue` och testas inte isolerat. `InvoicesView.test.js` testar felhanteringen vid
+  API-fel, inte statusvisningen.
+- **Navigation — delvis.** Inget fristående test, men `login.cy.js` verifierar omdirigering
+  vid utloggat tillstånd och kvarstående session vid omladdning, vilket täcker router-guarden
+  indirekt.
+- **Stores — två testfiler.** `stores/user.test.js` testar user-storen direkt.
+  `utils/consumption.test.js` (skrivs av ett annat teambidrag) testar consumption-storen och
+  ligger i `utils/` för att det är där testet skapades — se diskussion i PR #16.
 
 ## Regler
 
