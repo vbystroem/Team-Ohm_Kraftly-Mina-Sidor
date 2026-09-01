@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Fakturor</h1>
+    <div v-if="error" role="alert">{{ error }}</div>
     <div class="card">
       <table>
         <tr>
@@ -44,13 +45,17 @@ import { fetchInvoices } from "../services/api";
 import { formatCurrency } from "../utils/format";
 
 const invoices = ref([]);
+const error = ref(null);
 
 onMounted(async () => {
-  invoices.value = await fetchInvoices();
+  try {
+    invoices.value = await fetchInvoices();
+  } catch (err) {
+    error.value = err.message;
+  }
 });
 
 const downloadInvoice = (invoice) => {
-  // PDF generation coming in phase 2 per the quote
   console.log("download", invoice.id);
   alert("Nedladdning kommer snart");
 };
