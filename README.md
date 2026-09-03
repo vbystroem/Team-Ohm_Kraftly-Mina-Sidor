@@ -1,3 +1,5 @@
+[![CI](https://github.com/vbystroem/Team-Ohm_Kraftly-Mina-Sidor/actions/workflows/ci.yaml/badge.svg)](https://github.com/vbystroem/Team-Ohm_Kraftly-Mina-Sidor/actions/workflows/ci.yaml)
+
 # kraftly-portal
 
 Customer portal for Kraftly. Delivered by Webbmakarna AB 2026-06-30.
