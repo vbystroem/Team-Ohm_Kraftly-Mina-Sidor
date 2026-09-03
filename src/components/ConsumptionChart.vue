@@ -5,6 +5,7 @@
 <script setup>
 import Chart from 'chart.js/auto'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import return
 
 const props = defineProps({ months: Array, values: Array })
 const canvas = ref(null)
