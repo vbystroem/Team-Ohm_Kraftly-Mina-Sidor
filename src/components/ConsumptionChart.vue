@@ -7,7 +7,10 @@ import Chart from 'chart.js/auto'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import return
 
-const props = defineProps({ months: Array, values: Array })
+const props = defineProps({
+  months: { type: Array, default: () => [] },
+  values: { type: Array, default: () => [] },
+})
 const canvas = ref(null)
 let chart = null
 
@@ -16,14 +19,16 @@ onMounted(() => {
     type: 'bar',
     data: {
       labels: props.months,
-      datasets: [{
-        label: 'Förbrukning (kWh)',
-        data: props.values,
-        backgroundColor: '#2f54eb',
-        borderRadius: 4
-      }]
+      datasets: [
+        {
+          label: 'Förbrukning (kWh)',
+          data: props.values,
+          backgroundColor: '#2f54eb',
+          borderRadius: 4,
+        },
+      ],
     },
-    options: { plugins: { legend: { display: false } } }
+    options: { plugins: { legend: { display: false } } },
   })
 })
 

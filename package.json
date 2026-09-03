@@ -4,9 +4,26 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "api": "node mock-api/server.js",
     "build": "vite build",
     "preview": "vite preview",
-    "api": "node mock-api/server.js"
+    "test": "vitest",
+    "test:run": "vitest run",
+    "e2e:cy": "start-server-and-test \"npm run api\" http://localhost:4000/api/user \"npm run dev\" http://localhost:5173 \"cypress run\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "chart.js": "^4.4.7",
@@ -17,7 +34,21 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/vue": "^8.1.0",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "cypress": "^15.21.1",
+    "eslint": "^10.9.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.10.0",
+    "globals": "^17.12.0",
+    "husky": "^9.1.7",
+    "jsdom": "^25.0.1",
+    "lint-staged": "^17.4.1",
+    "prettier": "^3.9.6",
+    "start-server-and-test": "^3.0.12",
     "vite": "^6.0.7",
     "vitest": "^4.1.11"
   }
