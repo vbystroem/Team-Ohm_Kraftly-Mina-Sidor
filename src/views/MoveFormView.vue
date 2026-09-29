@@ -26,6 +26,7 @@
       <p v-if="reference" style="color: #12b76a; margin-top: 10px">
         Tack! Referensnummer: {{ reference }}
       </p>
+      <p v-if="error" style="color: #f04438; margin-top: 10px">{{ error }}</p>
     </div>
   </div>
 </template>
@@ -34,6 +35,7 @@
 import { ref, reactive } from 'vue'
 import BaseButton from '../components/BaseButton.vue'
 import { submitMove } from '../services/api'
+import { validateMove } from '../utils/validateMove'
 
 const form = reactive({
   address: '',
@@ -43,10 +45,21 @@ const form = reactive({
   contract: '',
 })
 const reference = ref(null)
+const error = ref(null)
 
 const submit = async () => {
-  // TODO validation
-  const res = await submitMove(form)
-  reference.value = res.ref
+  error.value = null
+  const valid = validateMove(form)
+  if (!Object.values(valid).every(Boolean)) {
+    error.value = 'Fyll i alla uppgifter korrekt.'
+    return
+  }
+  try {
+    const res = await submitMove(form)
+    reference.value = res.ref
+  } catch (e) {
+    error.value = 'Något gick fel, försök igen.'
+    console.error(e)
+  }
 }
 </script>
