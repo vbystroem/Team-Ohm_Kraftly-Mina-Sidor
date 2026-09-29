@@ -18,3 +18,14 @@
 - [ x ] docs/pipeline.md enligt strukturen från workshopen: Mermaid-diagram över ert flöde, tre beslut (jobbindelning, mergekrav, protokoll vid röd main), mätvärdena, skärmdump av låst merge-knapp
 - [ x ] CI-badge överst i README som visar passing
 - [ x ] Logg i docs/log.md: en post per arbetsdag, inklusive vem som gjorde vad
+
+## M5 – Produktionsmiljö
+
+- [x] **Cache-headers fixade:** Assets cachas hårt (immutable, 1 år) medan `index.html`, `config.js` och `version.txt` körs med `no-cache`. Verifierat med curl.
+- [x] **Prod uppe och rullar:** Egen Render-tjänst med `APP_ENV=production` och utan staging-banner. Båda miljöerna kör samma image (`version.txt` matchar).
+- [x] **Approval-gate för prod:** GitHub Environment `production` kräver godkännande från teamet innan deploy sker, följt av röktest.
+- [x] **Norge-feature flag:** Flaggan styrd via miljön (`FEATURE_NORWAY`) – påslagen i staging och avslagen i prod. Både flagg- och komponenttester gröna i Vitest.
+- [x] **Beslutsdokument för feature flags:** Klart i `docs/decisions/feature-flags.md` med jämförelse av tre alternativ och avvecklingsplan.
+- [x] **Rollback testad på riktigt:** Körde `rollback.yml` med miljöval mot staging. Rullade tillbaka till M4-taggen på ~26 sekunder utan strul.
+- [x] **Skalningsanalys:** Mätvärden från autocannon, analys av flaskhalsar och Kubernetes-beslut dokumenterat i `docs/scaling.md`.
+- [x] **Adresser uppdaterade:** Prod-URL tillagd i `README.md` och i miljötabellen i `docs/decisions/deploy.md`.
