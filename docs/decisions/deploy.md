@@ -6,11 +6,11 @@
 
 ## Miljöer
 
-| Miljö          | URL                                      | Image                                                       | API         | Uppdateras                |
-| -------------- | ---------------------------------------- | ----------------------------------------------------------- | ----------- | ------------------------- |
-| **Lokal**      | http://localhost:8080/                   | team-ohm_kraftly-mina-sidor                                 | mock-api    | docker compose up --build |
-| **Staging**    | https://kraftly-ohm-staging.onrender.com | ghcr.io/vbystroem/team-ohm_kraftly-mina-sidor:${GITHUB_SHA} | kraftly-api | Automatiskt via pipeline  |
-| **Production** | https://kraftly-ohm.onrender.com         | https://kraftly-ohm.onrender.com                            | kraftly-api | Automatiskt via pipeline  |
+| Miljö          | URL                                      | Image                                                       | API         | Uppdateras                                              |
+| -------------- | ---------------------------------------- | ----------------------------------------------------------- | ----------- | ------------------------------------------------------- |
+| **Lokal**      | http://localhost:8080/                   | team-ohm_kraftly-mina-sidor                                 | mock-api    | docker compose up --build                               |
+| **Staging**    | https://kraftly-ohm-staging.onrender.com | ghcr.io/vbystroem/team-ohm_kraftly-mina-sidor:${GITHUB_SHA} | kraftly-api | Automatiskt via pipeline                                |
+| **Production** | https://kraftly-ohm.onrender.com         | ghcr.io/vbystroem/team-ohm_kraftly-mina-sidor:${GITHUB_SHA} | kraftly-api | Efter godkännande i GitHub Actions (APP_ENV=production) |
 
 ## Konfiguration – var bor vad?
 
