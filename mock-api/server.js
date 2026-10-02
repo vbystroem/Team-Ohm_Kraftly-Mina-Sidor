@@ -32,17 +32,19 @@ if (keys.size === 0) {
 }
 
 const express = require('express')
+const { randomUUID } = require('node:crypto')
 const app = express()
 app.use(express.json())
 
-// CORS -- opens everything so it just works
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', '*')
-  res.header('Access-Control-Allow-Methods', '*')
-  if (req.method === 'OPTIONS') return res.sendStatus(200)
-  next()
-})
+// Testkontot (se Canvas "Testkonton v.7")
+const TEST_PASSWORD = 'kraftly-anna'
+const REFRESH_COOKIE = 'kraftly_refresh'
+
+// accessTokens = korta token i minnet, refreshTokens = sessionen bakom cookien
+const accessTokens = new Set()
+const refreshTokens = new Set()
+
+const newToken = () => randomUUID()
 
 // Varje anrop till /api/v2 måste ha en giltig nyckel
 app.use('/api/v2', (req, res, next) => {
@@ -56,6 +58,22 @@ app.use('/api/v2', (req, res, next) => {
   console.log(`[${client}] ${req.method} ${req.originalUrl}`)
   next()
 })
+
+// Kräver en giltig access token i Authorization-headern.
+const requireAccessToken = (req, res, next) => {
+  const auth = req.get('Authorization') || ''
+  const token = auth.startsWith('Bearer ') ? auth.slice(7) : ''
+  if (!accessTokens.has(token)) {
+    console.log(`401 ${req.method} ${req.originalUrl} – ogiltig token`)
+    return res.status(401).json({ error: 'Ogiltig eller saknad token' })
+  }
+  next()
+}
+
+// Skyddar allt under /api/v2 utom /auth/* – där får man ju sin token.
+app.use('/api/v2', (req, res, next) =>
+  req.path.startsWith('/auth') ? next() : requireAccessToken(req, res, next),
+)
 
 const user = {
   id: 1,
@@ -131,9 +149,30 @@ const consumption = {
   pricePerKwh: 1.42,
 }
 
-// anyone gets in, we'll add real auth later(TM)
-app.post('/api/v2/login', (req, res) => {
-  res.json({ token: 'fake-token-123', name: user.name })
+app.post('/api/v2/auth/login', (req, res) => {
+  const { email, password } = req.body
+  if (email !== user.email || password !== TEST_PASSWORD) {
+    return res.status(401).json({ error: 'Fel e-post eller lösenord' })
+  }
+  const token = newToken()
+  const refresh = newToken()
+  accessTokens.add(token)
+  refreshTokens.add(refresh)
+  res.cookie(REFRESH_COOKIE, refresh, { httpOnly: true, sameSite: 'lax' })
+  res.json({ token, name: user.name })
+})
+
+app.post('/api/v2/auth/refresh', (req, res) => {
+  // Plockar ut refresh-cookien ur Cookie-headern
+  const refresh = /(?:^|;\s*)kraftly_refresh=([^;]+)/.exec(
+    req.get('cookie') || '',
+  )?.[1]
+  if (!refresh || !refreshTokens.has(refresh)) {
+    return res.status(401).json({ error: 'Ingen giltig session' })
+  }
+  const token = newToken()
+  accessTokens.add(token)
+  res.json({ token })
 })
 
 app.get('/api/v2/user', (req, res) => res.json(user))
