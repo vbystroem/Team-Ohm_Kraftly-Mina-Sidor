@@ -3,6 +3,7 @@
 // Ingen nyckel här. Allt i frontendkoden hamnar i JavaScript-filen som browsern laddar
 // ner – en nyckel här är publik för alla som trycker F12. Appen anropar /api relativt.
 // Servern framför appen (Vite lokalt, nginx i containern) lägger på nyckeln.
+
 const BASE_URL = ''
 
 const request = async (path, options = {}) => {
@@ -10,6 +11,7 @@ const request = async (path, options = {}) => {
     ...options,
     headers: {
       'Content-Type': 'application/json',
+      Authorization: 'Bearer ',
       ...options.headers,
     },
   })
@@ -21,19 +23,19 @@ const request = async (path, options = {}) => {
 }
 
 export const login = (email, password) =>
-  request('/api/login', {
+  request('/api/v2/login', {
     method: 'POST',
     body: JSON.stringify({ email, password }),
   })
 
-export const fetchUser = () => request('/api/user')
+export const fetchUser = () => request('/api/v2/v2/user')
 
-export const fetchConsumption = () => request('/api/consumption')
+export const fetchConsumption = () => request('/api/v2/consumption')
 
-export const fetchInvoices = () => request('/api/invoices')
+export const fetchInvoices = () => request('/api/v2/invoices')
 
 export const submitMove = (data) =>
-  request('/api/move', { method: 'POST', body: JSON.stringify(data) })
+  request('/api/v2/move', { method: 'POST', body: JSON.stringify(data) })
 
 export const saveUser = (data) =>
-  request('/api/user', { method: 'PUT', body: JSON.stringify(data) })
+  request('/api/v2/user', { method: 'PUT', body: JSON.stringify(data) })

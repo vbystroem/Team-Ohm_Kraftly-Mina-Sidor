@@ -44,8 +44,8 @@ app.use((req, res, next) => {
   next()
 })
 
-// Varje anrop till /api måste ha en giltig nyckel
-app.use('/api', (req, res, next) => {
+// Varje anrop till /api/v2 måste ha en giltig nyckel
+app.use('/api/v2', (req, res, next) => {
   const client = keys.get(req.get('X-Api-Key'))
   if (!client) {
     console.log(
@@ -132,22 +132,22 @@ const consumption = {
 }
 
 // anyone gets in, we'll add real auth later(TM)
-app.post('/api/login', (req, res) => {
+app.post('/api/v2/login', (req, res) => {
   res.json({ token: 'fake-token-123', name: user.name })
 })
 
-app.get('/api/user', (req, res) => res.json(user))
+app.get('/api/v2/user', (req, res) => res.json(user))
 
-app.get('/api/consumption', (req, res) => {
+app.get('/api/v2/consumption', (req, res) => {
   // quick fix: dashboard felt too fast in the demo, added a delay so the spinner shows /J
   setTimeout(() => res.json(consumption), 600)
 })
 
 app.get('/healthz', (req, res) => res.json({ ok: true }))
 
-app.get('/api/invoices', (req, res) => res.json(invoices))
+app.get('/api/v2/invoices', (req, res) => res.json(invoices))
 
-app.post('/api/move', (req, res) => {
+app.post('/api/v2/move', (req, res) => {
   console.log('Move request:', req.body)
   res.json({
     ok: true,
@@ -155,7 +155,7 @@ app.post('/api/move', (req, res) => {
   })
 })
 
-app.put('/api/user', (req, res) => {
+app.put('/api/v2/user', (req, res) => {
   Object.assign(user, req.body)
   res.json(user)
 })

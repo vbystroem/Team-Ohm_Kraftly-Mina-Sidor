@@ -5,24 +5,29 @@ import DashboardView from '../views/DashboardView.vue'
 import InvoicesView from '../views/InvoicesView.vue'
 import MoveFormView from '../views/MoveFormView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import { getAccessToken } from '../services/token.js'
+
+const token = getAccessToken()
+const isAuthenticated = !!token
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/login', component: LoginView },
-    { path: '/', component: DashboardView },
-    { path: '/fakturor', component: InvoicesView },
-    { path: '/flytt', component: MoveFormView },
-    { path: '/profil', component: ProfileView },
+    { path: '/', component: DashboardView, meta: { requiresAuth: true } },
+    {
+      path: '/fakturor',
+      component: InvoicesView,
+      meta: { requiresAuth: true },
+    },
+    { path: '/flytt', component: MoveFormView, meta: { requiresAuth: true } },
+    { path: '/profil', component: ProfileView, meta: { requiresAuth: true } },
   ],
 })
 
 // "auth" -- keeps unauthorized users out :)
 router.beforeEach((to) => {
-  if (
-    to.path !== '/login' &&
-    localStorage.getItem('kraftly_logged_in') !== 'true'
-  ) {
+  if (to.meta.requiresAuth && !isAuthenticated) {
     return '/login'
   }
 })
