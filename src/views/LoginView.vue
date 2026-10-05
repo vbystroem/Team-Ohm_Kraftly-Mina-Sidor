@@ -1,13 +1,18 @@
 <template>
   <div class="login-wrap">
     <div class="card login-card">
-      <img src="../assets/logo-dark.svg" class="login-logo" />
+      <img
+        src="../assets/logo-dark.svg"
+        alt="Kraftly logotyp"
+        class="login-logo"
+      />
       <h1>Logga in på Mina sidor</h1>
       <input v-model="email" type="text" placeholder="E-postadress" />
       <input v-model="password" type="password" placeholder="Lösenord" />
       <button class="btn" style="width: 100%" @click="handleLogin">
         Logga in
       </button>
+      <div v-if="error" role="alert" style="margin-top: 10px">{{ error }}</div>
       <p class="hint" style="margin-top: 10px">
         Problem att logga in? Ring kundservice 020-123 456
       </p>
@@ -19,16 +24,22 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '../services/api'
+import { setAccessToken } from '../services/token'
 
 const email = ref('')
 const password = ref('')
+const error = ref(null)
 const router = useRouter()
 
 const handleLogin = async () => {
-  // validation coming in v2 :)
-  await login(email.value, password.value)
-  localStorage.setItem('kraftly_logged_in', 'true')
-  router.push('/')
+  error.value = null
+  try {
+    const data = await login(email.value, password.value)
+    setAccessToken(data.token)
+    router.push('/')
+  } catch {
+    error.value = 'Fel e-post eller lösenord'
+  }
 }
 </script>
 

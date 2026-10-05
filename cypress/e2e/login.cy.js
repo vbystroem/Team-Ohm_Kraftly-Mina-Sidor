@@ -18,7 +18,7 @@ describe('Login flow', () => {
     cy.get('input[placeholder="E-postadress"]').type(
       'anna.andersson@example.com',
     )
-    cy.get('input[placeholder="Lösenord"]').type('hemligt123')
+    cy.get('input[placeholder="Lösenord"]').type('kraftly-anna')
     cy.contains('button', 'Logga in').click()
 
     // back on the dashboard
@@ -26,9 +26,8 @@ describe('Login flow', () => {
     cy.contains('h1', 'Hej').should('be.visible')
     // the topbar (only rendered when logged in) shows the logout action
     cy.contains('Logga ut').should('be.visible')
-    // the auth flag is persisted so the guard won't bounce us out again
     cy.window().then((win) => {
-      expect(win.localStorage.getItem('kraftly_logged_in')).to.eq('true')
+      expect(win.localStorage.length).to.eq(0)
     })
   })
 
@@ -37,11 +36,11 @@ describe('Login flow', () => {
     cy.get('input[placeholder="E-postadress"]').type(
       'anna.andersson@example.com',
     )
-    cy.get('input[placeholder="Lösenord"]').type('hemligt123')
+    cy.get('input[placeholder="Lösenord"]').type('kraftly-anna')
     cy.contains('button', 'Logga in').click()
     cy.url().should('eq', Cypress.config('baseUrl') + '/')
 
-    // reload: guard sees kraftly_logged_in still set, so we stay on the dashboard
+    // reload: the refresh cookie keeps the session alive
     cy.reload()
     cy.url().should('eq', Cypress.config('baseUrl') + '/')
     cy.contains('h1', 'Hej').should('be.visible')
