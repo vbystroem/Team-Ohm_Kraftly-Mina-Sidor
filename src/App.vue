@@ -1,4 +1,7 @@
 <template>
+  <div v-if="appEnv !== 'production'" class="env-banner">
+    {{ appEnv.toUpperCase() }}
+  </div>
   <div>
     <header v-if="$route.path !== '/login'" class="topbar">
       <div class="topbar-inner container">
@@ -20,11 +23,13 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+import { setAccessToken } from './services/token'
 
 const router = useRouter()
+const appEnv = window.__KRAFTLY__?.env ?? 'lokal'
 
 const logout = () => {
-  localStorage.removeItem('kraftly_logged_in')
+  setAccessToken(null)
   router.push('/login')
 }
 </script>
@@ -54,5 +59,11 @@ const logout = () => {
 .topbar nav a.router-link-active {
   color: #fff;
   font-weight: 600;
+}
+.env-banner {
+  width: 100vw;
+  height: 30px;
+  background-color: #ffffaa;
+  color: #816f00;
 }
 </style>
