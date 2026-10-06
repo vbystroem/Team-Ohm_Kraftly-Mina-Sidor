@@ -29,6 +29,10 @@ cp .env.example .env
 
 Gå in på https://kraftly-ohm-staging.onrender.com för att komma åt stagingmiljön
 
+### Production
+
+Gå in på [https://kraftly-ohm.onrender.com](https://kraftly-ohm.onrender.com) för att komma åt produktionsmiljön
+
 ### Utan Docker
 
 Kräver Node.js 22+.
