@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// TODO: look into "lazy loading" at some point, ran out of time /M
-import LoginView from '../views/LoginView.vue'
-import DashboardView from '../views/DashboardView.vue'
-import InvoicesView from '../views/InvoicesView.vue'
-import MoveFormView from '../views/MoveFormView.vue'
-import ProfileView from '../views/ProfileView.vue'
+const LoginView = () => import('../views/LoginView.vue')
+const DashboardView = () => import('../views/DashboardView.vue')
+const InvoicesView = () => import('../views/InvoicesView.vue')
+const MoveFormView = () => import('../views/MoveFormView.vue')
+const ProfileView = () => import('../views/ProfileView.vue')
 import { getAccessToken } from '../services/token.js'
 import { refreshAuth } from '../services/api.js'
 
