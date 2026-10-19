@@ -9,9 +9,7 @@
       <h1>Logga in på Mina sidor</h1>
       <input v-model="email" type="text" placeholder="E-postadress" />
       <input v-model="password" type="password" placeholder="Lösenord" />
-      <button class="btn" style="width: 100%" @click="handleLogin">
-        Logga in
-      </button>
+      <KButton block @click="handleLogin">Logga in</KButton>
       <div v-if="error" role="alert" style="margin-top: 10px">{{ error }}</div>
       <p class="hint" style="margin-top: 10px">
         Problem att logga in? Ring kundservice 020-123 456
@@ -23,6 +21,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import KButton from '../components/KButton.vue'
 import { login } from '../services/api'
 import { setAccessToken } from '../services/token'
 
