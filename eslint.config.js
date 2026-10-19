@@ -7,7 +7,13 @@ export default [
   js.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
   {
-    ignores: ['dist/', 'node_modules/', 'cypress/', 'mock-api/'],
+    ignores: [
+      'dist/',
+      'storybook-static/',
+      'node_modules/',
+      'cypress/',
+      'mock-api/',
+    ],
   },
   {
     languageOptions: {
