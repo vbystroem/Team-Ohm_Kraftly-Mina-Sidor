@@ -46,11 +46,11 @@
         Anmälan måste göras senast 14 dagar före flytt
       </p>
 
-      <p v-if="reference" style="color: #12b76a; margin-top: 10px">
+      <p v-if="reference" style="color: #067647; margin-top: 10px">
         Tack! Referensnummer: {{ reference }}
       </p>
 
-      <p v-if="error" style="color: #f04438; margin-top: 10px">
+      <p v-if="error" style="color: #b42318; margin-top: 10px">
         {{ error }}
       </p>
     </div>
