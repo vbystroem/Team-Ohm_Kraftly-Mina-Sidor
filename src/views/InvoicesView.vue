@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Fakturor</h1>
+    <div v-if="error" role="alert">{{ error }}</div>
     <div class="card">
       <table>
         <thead>
