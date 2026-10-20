@@ -17,8 +17,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky",
-    "test:a11y": "vitest run a11y"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,vue}": [
@@ -53,7 +52,6 @@
     "eslint-plugin-vue": "^10.10.0",
     "globals": "^17.12.0",
     "husky": "^9.1.7",
-    "jest-axe": "^11.0.0",
     "jest-axe": "11.0.0",
     "jsdom": "^25.0.1",
     "lint-staged": "^17.4.1",
