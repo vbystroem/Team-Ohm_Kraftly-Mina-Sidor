@@ -1,7 +1,11 @@
 <template>
   <div class="login-wrap">
     <div class="card login-card">
-      <img src="../assets/logo-dark.svg" alt="" class="login-logo" />
+      <img
+        src="../assets/logo-dark.svg"
+        alt="Kraftly logotyp"
+        class="login-logo"
+      />
       <h1>Logga in på Mina sidor</h1>
       <label for="login-email">E-postadress</label>
       <input
