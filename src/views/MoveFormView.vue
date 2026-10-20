@@ -41,9 +41,7 @@
         <option>Fast pris 3 år</option>
       </select>
 
-      <BaseButton @click="submit">Skicka flyttanmälan</BaseButton>
-
-      <KButton @click="submit">Skicka flyttanmälan</KButton>
+      <KButton type="submit" @click="submit">Skicka flyttanmälan</KButton>
       <p class="hint" style="margin-top: 8px">
         Anmälan måste göras senast 14 dagar före flytt
       </p>
@@ -94,4 +92,3 @@ const submit = async () => {
   }
 }
 </script>
-```

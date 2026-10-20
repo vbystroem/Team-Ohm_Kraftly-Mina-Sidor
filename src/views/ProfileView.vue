@@ -24,11 +24,6 @@
         type="text"
         autocomplete="street-address"
       />
-      <AppButton color="#12b76a" @click="save">Spara ändringar</AppButton>
-      <button class="button-secondary" style="margin-left: 10px" @click="reset">
-      <input v-model="name" type="text" />
-      <input v-model="email" type="text" />
-      <input v-model="address" type="text" />
       <KButton @click="save">Spara ändringar</KButton>
       <KButton variant="secondary" style="margin-left: 10px" @click="reset">
         Ångra
