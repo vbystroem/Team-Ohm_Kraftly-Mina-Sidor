@@ -43,6 +43,7 @@
 
       <BaseButton @click="submit">Skicka flyttanmälan</BaseButton>
 
+      <KButton @click="submit">Skicka flyttanmälan</KButton>
       <p class="hint" style="margin-top: 8px">
         Anmälan måste göras senast 14 dagar före flytt
       </p>
@@ -60,7 +61,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import BaseButton from '../components/BaseButton.vue'
+import KButton from '../components/KButton.vue'
 import { submitMove } from '../services/api'
 import { validateMove } from '../utils/validateMove'
 

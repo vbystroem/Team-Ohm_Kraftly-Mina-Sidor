@@ -18,20 +18,12 @@
           <td>{{ formatCurrency(invoice.amount) }}</td>
           <td>{{ invoice.due }}</td>
           <td>
-            <span
-              :class="[
-                'status-chip',
-                invoice.status === 'Betald'
-                  ? 'status-betald'
-                  : 'status-obetald',
-              ]"
-              >{{ invoice.status }}</span
-            >
+            <StatusChip :status="invoice.status" />
           </td>
           <td>
-            <div class="download" @click="downloadInvoice(invoice)">
+            <KButton variant="text" @click="downloadInvoice(invoice)">
               Ladda ner
-            </div>
+            </KButton>
           </td>
         </tr>
       </table>
@@ -41,6 +33,8 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import KButton from '../components/KButton.vue'
+import StatusChip from '../components/StatusChip.vue'
 import { fetchInvoices } from '../services/api'
 import { formatCurrency } from '../utils/format'
 
@@ -60,11 +54,3 @@ const downloadInvoice = (invoice) => {
   alert('Nedladdning kommer snart')
 }
 </script>
-
-<style scoped>
-.download {
-  color: #2f54eb;
-  cursor: pointer;
-  font-size: 14px;
-}
-</style>

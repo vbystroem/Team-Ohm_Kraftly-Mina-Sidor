@@ -23,6 +23,7 @@ export default defineConfig(({ mode }) => {
       environment: 'jsdom',
       include: ['src/**/*.test.js'],
       setupFiles: ['./src/test-setup.js'],
+      setupFiles: ['./tests/setup.js'],
     },
   }
 })
