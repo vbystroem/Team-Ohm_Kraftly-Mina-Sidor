@@ -16,15 +16,18 @@ npm run test:a11y    # axe-testerna (filerna *.a11y.test.js)
 
 ## Vad vi åtgärdade
 
-| Brist                                         | Var                                 | Hittades med                     | Åtgärd (PR)                           |
-| --------------------------------------------- | ----------------------------------- | -------------------------------- | ------------------------------------- |
-| `BaseButton`                                  | `BaseButton.vue`                    | grep och kodläsning              | `KButton` med story och axe-test (#…) |
-| Knappklassen `.btn`                           | `LoginView.vue`, `MoveFormView.vue` | grep och kodläsning              | `KButton` med story och axe-test (#…) |
-| `AppButton`                                   | `ProfileView.vue`                   | grep och kodläsning              | `KButton` med story och axe-test (#…) |
-| Knappklassen `.button-secondary`              | `ProfileView.vue`                   | grep och kodläsning              | `KButton variant="secondary"` (#…)    |
-| Klickbar `<div class="btn">` – Fler spartips  | `DashboardView.vue`                 | Tangentbordet (nås inte med Tab) | `KButton` (#…)                        |
-| Klickbar `<div class="download">` – Ladda ner | `InvoicesView.vue`                  | Tangentbordet (nås inte med Tab) | `KButton variant="text"` (#…)         |
-| Klickbar `<span class="logout">` – Logga ut   | `App.vue`                           | Tangentbordet (nås inte med Tab) | `KButton variant="text"` (#…)         |
+| Brist                                                | Var                                 | Hittades med                                               | Åtgärd (PR)                                           |
+| ---------------------------------------------------- | ----------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
+| `BaseButton`                                         | `BaseButton.vue`                    | grep och kodläsning                                        | `KButton` med story och axe-test (#…)                 |
+| Knappklassen `.btn`                                  | `LoginView.vue`, `MoveFormView.vue` | grep och kodläsning                                        | `KButton` med story och axe-test (#…)                 |
+| `AppButton`                                          | `ProfileView.vue`                   | grep och kodläsning                                        | `KButton` med story och axe-test (#…)                 |
+| Knappklassen `.button-secondary`                     | `ProfileView.vue`                   | grep och kodläsning                                        | `KButton variant="secondary"` (#…)                    |
+| Klickbar `<div class="btn">` – Fler spartips         | `DashboardView.vue`                 | Tangentbordet (nås inte med Tab)                           | `KButton` (#…)                                        |
+| Klickbar `<div class="download">` – Ladda ner        | `InvoicesView.vue`                  | Tangentbordet (nås inte med Tab)                           | `KButton variant="text"` (#…)                         |
+| Klickbar `<span class="logout">` – Logga ut          | `App.vue`                           | Tangentbordet (nås inte med Tab)                           | `KButton variant="text"` (#…)                         |
+| Fält med bara `placeholder` som namn                 | `LoginView.vue`                     | `getByLabelText` – **inte** axe                            | `<label for>` + `id` på båda fälten (#105)            |
+| Fält helt utan namn (varken label eller placeholder) | `ProfileView.vue`                   | axe `label` – _Form elements must have labels_, tre gånger | `<label for>` + `id` på de tre fälten (#105)          |
+| Fält utan `<label for>` men med `placeholder`        | `MoveFormView.vue`                  | Kodläsning – axe godkände placeholdern                     | `<label for>` + `id` på fyra fält och `select` (#105) |
 
 ## Tangentbordsgenomgång
 
@@ -44,14 +47,14 @@ npm run test:a11y    # axe-testerna (filerna *.a11y.test.js)
 - Klickbara `<div>`/`<span>` och tre knappvarianter – axe ser bara roller och attribut, inte att ett element beter sig som en knapp. Hittades med kodläsning och tangentbordet; åtgärdat med `KButton`.
 - `outline: none` i global CSS – axe kontrollerar inte om fokusringen syns. Kvar.
 - `lang="en"` trots svenskt innehåll – axe flaggar inte fel språk. Kvar.
-- Fält med bara `placeholder` – axe godkänner placeholder som namn, `getByLabelText` gör det inte. Kvar.
+- Fält med bara `placeholder` – axe godkänner placeholder som namn, `getByLabelText` gör det inte. Hittades med `LoginView.a11y.test.js` (`getByLabelText` var röd medan axe var grön); åtgärdat med `<label for>` + `id` (#105).
+- Fält utan `<label for>` men med `placeholder` i `MoveFormView` – axe såg inget eftersom placeholdern godkänns som namn. Hittades med kodläsning; åtgärdat med `<label for>` + `id` (#105).
 - `<th>` utan `scope` – axe har ingen regel för det. Kvar.
 - Fokus som inte flyttas vid ruttbyte – axe testar enskilda vyer, inte navigering. Kvar.
 - Kontrast i Vitest – jsdom ritar ingenting, så färgreglerna är avstängda. Kontrast syns bara i Accessibility-fliken eller i webbläsaren.
 
 ## Kända brister
 
-- Fälten i `LoginView`, `ProfileView` och `MoveFormView` saknar kopplade `<label for>`/`id`.
 - `*:focus { outline: none; }` finns kvar, bara `KButton` har egen fokusring.
 - `index.html` har `lang="en"` och titeln `Vite App`.
 - Logotypen i `App.vue` saknar `alt`.
