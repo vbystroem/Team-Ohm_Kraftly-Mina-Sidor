@@ -7,3 +7,8 @@ storybook-static
 # Hemligheter och lokal konfiguration – aldrig i repot
 .env
 .env.local
+
+
+
+diff.patchs
+review.md
