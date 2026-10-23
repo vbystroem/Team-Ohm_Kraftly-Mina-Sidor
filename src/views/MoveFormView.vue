@@ -6,31 +6,32 @@
         Fyll i uppgifterna nedan så flyttar vi ditt elavtal.
       </p>
 
-      <label for="move-address">Ny adress</label>
-      <input
-        id="move-address"
+      <KField
         v-model="form.address"
-        type="text"
-        placeholder="Ny adress"
+        label="Ny adress"
+        autocomplete="street-address"
+        :error="errors.address"
       />
 
-      <label for="move-zip">Postnummer</label>
-      <input
-        id="move-zip"
+      <KField
         v-model="form.zip"
-        type="text"
-        placeholder="Postnummer"
+        label="Postnummer"
+        inputmode="numeric"
+        autocomplete="postal-code"
+        :error="errors.zip"
       />
 
-      <label for="move-city">Ort</label>
-      <input id="move-city" v-model="form.city" type="text" placeholder="Ort" />
+      <KField
+        v-model="form.city"
+        label="Ort"
+        autocomplete="address-level2"
+        :error="errors.city"
+      />
 
-      <label for="move-date">Inflyttningsdatum (ÅÅÅÅ-MM-DD)</label>
-      <input
-        id="move-date"
+      <KField
         v-model="form.date"
-        type="text"
-        placeholder="Inflyttningsdatum (ÅÅÅÅ-MM-DD)"
+        label="Inflyttningsdatum (ÅÅÅÅ-MM-DD)"
+        :error="errors.date"
       />
 
       <label for="move-contract">Avtal</label>
@@ -60,6 +61,7 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import KButton from '../components/KButton.vue'
+import KField from '../components/KField.vue'
 import { submitMove } from '../services/api'
 import { validateMove } from '../utils/validateMove'
 
@@ -71,12 +73,19 @@ const form = reactive({
   contract: '',
 })
 
+const errors = reactive({ address: '', zip: '', city: '', date: '' })
+
 const reference = ref(null)
 const error = ref(null)
 
 const submit = async () => {
   error.value = null
   const valid = validateMove(form)
+
+  errors.address = valid.address ? '' : 'Fyll i ny adress'
+  errors.zip = valid.zip ? '' : 'Postnummer ska vara fem siffror'
+  errors.city = valid.city ? '' : 'Fyll i ort'
+  errors.date = valid.date ? '' : 'Fyll i inflyttningsdatum'
 
   if (!Object.values(valid).every(Boolean)) {
     error.value = 'Fyll i alla uppgifter korrekt.'
