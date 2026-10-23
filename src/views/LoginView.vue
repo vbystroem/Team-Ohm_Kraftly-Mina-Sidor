@@ -7,22 +7,29 @@
         class="login-logo"
       />
       <h1>Logga in på Mina sidor</h1>
-      <label for="login-email">E-postadress</label>
-      <input
+
+      <KField
         id="login-email"
         v-model="email"
+        label="E-postadress"
         type="email"
         autocomplete="username"
       />
-      <label for="login-password">Lösenord</label>
-      <input
+
+      <KField
         id="login-password"
         v-model="password"
+        label="Lösenord"
         type="password"
         autocomplete="current-password"
       />
+
       <KButton block @click="handleLogin">Logga in</KButton>
-      <div v-if="error" role="alert" style="margin-top: 10px">{{ error }}</div>
+
+      <div v-if="error" role="alert" style="margin-top: 10px">
+        {{ error }}
+      </div>
+
       <p class="hint" style="margin-top: 10px">
         Problem att logga in? Ring kundservice 020-123 456
       </p>
@@ -34,6 +41,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import KButton from '../components/KButton.vue'
+import KField from '../components/KField.vue'
 import { login } from '../services/api'
 import { setAccessToken } from '../services/token'
 
@@ -60,18 +68,13 @@ const handleLogin = async () => {
   justify-content: center;
   padding-top: 60px;
 }
+
 .login-card {
   width: 380px;
 }
+
 .login-logo {
   height: 34px;
   margin-bottom: 18px;
-}
-
-label {
-  display: block;
-  font-size: 13px;
-  color: #4a5468;
-  margin-bottom: 4px;
 }
 </style>
