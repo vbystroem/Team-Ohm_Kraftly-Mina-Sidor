@@ -21,11 +21,6 @@
         type="password"
         autocomplete="current-password"
       />
-      <button class="btn" style="width: 100%" @click="handleLogin">
-        Logga in
-      </button>
-      <input v-model="email" type="text" placeholder="E-postadress" />
-      <input v-model="password" type="password" placeholder="Lösenord" />
       <KButton block @click="handleLogin">Logga in</KButton>
       <div v-if="error" role="alert" style="margin-top: 10px">{{ error }}</div>
       <p class="hint" style="margin-top: 10px">
