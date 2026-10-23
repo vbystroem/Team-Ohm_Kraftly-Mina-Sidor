@@ -4,36 +4,36 @@
     <div v-if="error" role="alert">{{ error }}</div>
     <div class="card">
       <table>
-        <tr>
-          <th>Faktura</th>
-          <th>Period</th>
-          <th>Belopp</th>
-          <th>Förfaller</th>
-          <th>Status</th>
-          <th></th>
-        </tr>
-        <tr v-for="invoice in invoices" :key="invoice.id">
-          <td>{{ invoice.id }}</td>
-          <td>{{ invoice.period }}</td>
-          <td>{{ formatCurrency(invoice.amount) }}</td>
-          <td>{{ invoice.due }}</td>
-          <td>
-            <span
-              :class="[
-                'status-chip',
-                invoice.status === 'Betald'
-                  ? 'status-betald'
-                  : 'status-obetald',
-              ]"
-              >{{ invoice.status }}</span
-            >
-          </td>
-          <td>
-            <div class="download" @click="downloadInvoice(invoice)">
-              Ladda ner
-            </div>
-          </td>
-        </tr>
+        <thead>
+          <tr>
+            <th scope="col">Faktura</th>
+            <th scope="col">Period</th>
+            <th scope="col">Belopp</th>
+            <th scope="col">Förfaller</th>
+            <th scope="col">Status</th>
+            <th scope="col"><span class="visually-hidden">Åtgärd</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="invoice in invoices" :key="invoice.id">
+            <td>{{ invoice.id }}</td>
+            <td>{{ invoice.period }}</td>
+            <td>{{ formatCurrency(invoice.amount) }}</td>
+            <td>{{ invoice.due }}</td>
+            <td>
+              <StatusChip :status="invoice.status" />
+            </td>
+            <td>
+              <KButton
+                variant="text"
+                :aria-label="`Ladda ner faktura ${invoice.id}`"
+                @click="downloadInvoice(invoice)"
+              >
+                Ladda ner
+              </KButton>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -41,6 +41,8 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import KButton from '../components/KButton.vue'
+import StatusChip from '../components/StatusChip.vue'
 import { fetchInvoices } from '../services/api'
 import { formatCurrency } from '../utils/format'
 
@@ -60,11 +62,3 @@ const downloadInvoice = (invoice) => {
   alert('Nedladdning kommer snart')
 }
 </script>
-
-<style scoped>
-.download {
-  color: #2f54eb;
-  cursor: pointer;
-  font-size: 14px;
-}
-</style>

@@ -15,10 +15,8 @@ describe('Login flow', () => {
   it('logs in and reaches the dashboard', () => {
     cy.url().should('include', '/login')
 
-    cy.get('input[placeholder="E-postadress"]').type(
-      'anna.andersson@example.com',
-    )
-    cy.get('input[placeholder="Lösenord"]').type('kraftly-anna')
+    cy.get('input[autocomplete="username"]').type('anna.andersson@example.com')
+    cy.get('input[autocomplete="current-password"]').type('kraftly-anna')
     cy.contains('button', 'Logga in').click()
 
     // back on the dashboard
@@ -33,10 +31,8 @@ describe('Login flow', () => {
 
   it('keeps the session across a reload', () => {
     cy.url().should('include', '/login')
-    cy.get('input[placeholder="E-postadress"]').type(
-      'anna.andersson@example.com',
-    )
-    cy.get('input[placeholder="Lösenord"]').type('kraftly-anna')
+    cy.get('input[autocomplete="username"]').type('anna.andersson@example.com')
+    cy.get('input[autocomplete="current-password"]').type('kraftly-anna')
     cy.contains('button', 'Logga in').click()
     cy.url().should('eq', Cypress.config('baseUrl') + '/')
 

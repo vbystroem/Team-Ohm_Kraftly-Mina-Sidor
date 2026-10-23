@@ -29,3 +29,11 @@
 - [x] **Rollback testad på riktigt:** Körde `rollback.yml` med miljöval mot staging. Rullade tillbaka till M4-taggen på ~26 sekunder utan strul.
 - [x] **Skalningsanalys:** Mätvärden från autocannon, analys av flaskhalsar och Kubernetes-beslut dokumenterat i `docs/scaling.md`.
 - [x] **Adresser uppdaterade:** Prod-URL tillagd i `README.md` och i miljötabellen i `docs/decisions/deploy.md`.
+
+## M8 – Komponentbibliotek
+
+- [x] **Gemensamma komponenter extraherade**: EN Button-komponent (`KButton`) ersätter alla tre varianter och div-knapparna. Inga `BaseButton`, `AppButton`, .btn eller `.button-secondary` kvar, och inget element med `@click`som inte är en knapp eller länk
+- [x] **Labels, fokusstilar, kontrast och lang åtgärdade**: varje fält har en kopplad label (inte bara placeholder), fokus syns vid Tab överallt (`:focus-visible`, ingen `outline: none` kvar), text klarar 4,5:1, `<html lang="sv">`. Även alt-texter och fakturatabellens scope. `<label for>` + id räcker – `KField` är inte ett krav i M8
+- [x] **Storybook lokalt med stories för KButton och de gemensamma komponenter ni ändrar i M8**: `npm run storybook` startar, `npm run build-storybook` lyckas, och Accessibility-fliken visar Violations 0 på varje story
+- [x] **axe-tester gröna lokalt**: ett `*.a11y.test.js` för `KButton` och ett för inloggningen (axe + `getByLabelText`); `npm run test:a11y` och `npm run test:run` gröna. Klistra in sista raderna ur körningen
+- [x] **Tangentbordsnavigering verifierad, dokumenterad i `docs/accessibility.md`**: varje vy genomgången med bara tangentbordet, före och efter, med resultat per vy
