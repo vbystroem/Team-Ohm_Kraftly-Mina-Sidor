@@ -1,35 +1,6 @@
-<!-- ## M7
-
-co2.js – Sustainable Web Design v4 · dist/ (index.html + assets/, okomprimerat)
-
-| kB per besök | g CO2e per besök (SE) | kg CO2e per månad (SE) | kg CO2e per månad (globalt) |
-| -----------: | --------------------: | ---------------------: | --------------------------: |
-|          268 |                 0,016 |                    2,0 |                         4,9 |
-
-Elmix (co2.js): Sverige 35,89 g CO2e/kWh (SWE) · globalt 472,94 g CO2e/kWh (WORLD)
-Energi: 10,3 kWh per månad (34,3 GB × 0,30 kWh/GB)
-Antaganden: 40 000 kunder × 3,2 sessioner = 128 000 besök/månad · andel förstabesök 100 %
-Obs: tillverkningen av enheter, nät och datacenter räknas alltid med SWD v4:s globala 494 g CO2e/kWh – bara driften får landets mix.
-
-## M6
-
-npm run co2 -- ../kraftly-m6/dist
-
-> kraftly-mina-sidor@0.9.0 co2
-> node scripts/co2.mjs ../kraftly-m6/dist
-> |---:|---:|---:|---:|
-> | 6 880 | 0,408 | 52,2 | 126,9 |
-
-Elmix (co2.js): Sverige 35,89 g CO2e/kWh (SWE) · globalt 472,94 g CO2e/kWh (WORLD)
-Energi: 264,2 kWh per månad (880,6 GB × 0,30 kWh/GB)
-Antaganden: 40 000 kunder × 3,2 sessioner = 128 000 besök/månad · andel förstabesök 100 %
-Obs: tillverkningen av enheter, nät och datacenter räknas alltid med SWD v4:s globala 494 g CO2e/kWh – bara driften får landets mix. -->
-
 # Hållbarhet och etik
 
 ## Siffrorna
-
-<Uppmätt med scripts/co2.mjs (co2.js 0.19.0, Sustainable Web Design-modellen v4), datum.>
 
 |                     | kB per besök | g CO2e per besök (SE) | kg CO2e per månad (SE) | kg CO2e per månad (globalt) |
 | ------------------- | ------------ | --------------------- | ---------------------- | --------------------------- |
@@ -37,14 +8,6 @@ Obs: tillverkningen av enheter, nät och datacenter räknas alltid med SWD v4:s 
 | Efter M7 (main)     | 268          | 0,016                 | 2,0                    | 4,9                         |
 
 ## Metoden och vad vi inte räknar
-
-<Tre meningar: vad vi mätte och hur (okomprimerat, varje besök som första, svensk elmix … g/kWh),
-trafiken (40 000 kunder × … sessioner, och varför just det antagandet), och vad som inte är med.>
-
-Elmix (co2.js): Sverige 35,89 g CO2e/kWh (SWE) · globalt 472,94 g CO2e/kWh (WORLD)
-Energi: 264,2 kWh per månad (880,6 GB × 0,30 kWh/GB)
-Antaganden: 40 000 kunder × 3,2 sessioner = 128 000 besök/månad · andel förstabesök 100 %
-Obs: tillverkningen av enheter, nät och datacenter räknas alltid med SWD v4:s globala 494 g CO2e/kWh – bara driften får landets mix.
 
 Vi baserar våra beräkningar på antaganden som matchar en vanlig månad hos Kraftly Mina Sidor, därmed 40000 kunder som besöker sidan 3,2 ggr i månaden. För att vara på den säkra sidan antar vi att alla besök sker på en ny enhet, vilket blir 128000 icke-cachade besök i månaden. Eftersom vi använder webbtjänster för hosting kan vi inte räkna med att all el kommer från Sverige, vilket ökar mängden Co2 markant. Vi gör då beräkningarna utifrån SWD v4:s globala nummer: 494g CO2e/KWh (WORLD). Själva driften av sidan sker dock i Sverige (SWE).
 
