@@ -31,9 +31,6 @@ jobs:
         id: lint
         run: npm run lint
 
-      - name: Run Prettier format
-        run: npm run format
-
       - name: Run Prettier check
         id: prettier
         run: npm run format:check
@@ -96,7 +93,7 @@ jobs:
         with:
           name: storybook
           path: storybook-static
-          retention-days: 7  
+          retention-days: 7
 
   lighthouse:
     name: Prestandabudget (Lighthouse)
