@@ -60,8 +60,8 @@ Samma image går genom miljöerna – konfigurationen skiljer dem åt, inte kode
 
 ## Beslut
 
-De tre viktigaste – alla beslut finns i [`docs/decisions/`](decisions/README.md):
+De tre viktigaste – alla beslut finns i [docs/decisions/](decisions/README.md):
 
 - [Hosting](decisions/hosting.md) – en container på Render, imagen byggs en gång
 - [Tokenlagring](decisions/tokenlagring.md) – access token i minnet, refresh i httpOnly-cookie
-- [Feature flags](decisions/feature-flags.md) – Norge bakom en flagga som läses vid körtid
+- [Rendering](decisions/rendering.md) – Vue 3 som SPA, inte SSR
