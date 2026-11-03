@@ -121,7 +121,7 @@ Vi har tagit beslut under projektets gång, dessa finns i docs/decisions, med in
 | Fil                                                        | Svarar på                                                            |
 | ---------------------------------------------------------- | -------------------------------------------------------------------- |
 | `docs/architecture.md`                                     | Vad pratar med vad, var kör det, lagren i frontend                   |
-| `docs/decisions/`                                          | Varför – ett dokument per beslut, index i `docs/decisions/README.md` |
+| [docs/decisions/](docs/decisions/README.md)                | Varför – ett dokument per beslut, index över projektets beslut       |
 | `docs/decisions/deploy.md`                                 | Hur en ändring når staging och prod, var hemligheterna bor, rollback |
 | `docs/decisions/containers.md`                             | Hur Docker-imagen är byggd och körs lokalt                           |
 | `docs/pipeline.md`                                         | Vad som krävs för att merga, vad man gör när `main` är röd           |
