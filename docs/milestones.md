@@ -37,3 +37,16 @@
 - [x] **Storybook lokalt med stories för KButton och de gemensamma komponenter ni ändrar i M8**: `npm run storybook` startar, `npm run build-storybook` lyckas, och Accessibility-fliken visar Violations 0 på varje story
 - [x] **axe-tester gröna lokalt**: ett `*.a11y.test.js` för `KButton` och ett för inloggningen (axe + `getByLabelText`); `npm run test:a11y` och `npm run test:run` gröna. Klistra in sista raderna ur körningen
 - [x] **Tangentbordsnavigering verifierad, dokumenterad i `docs/accessibility.md`**: varje vy genomgången med bara tangentbordet, före och efter, med resultat per vy
+
+## M10
+
+- Partnerteamets issue: [#121 Nya kollegan-testet 29/10](https://github.com/vbystroem/Team-Ohm_Kraftly-Mina-Sidor/issues/121)
+- Arkitekturskiss: [`docs/architecture.md`](https://github.com/vbystroem/Team-Ohm_Kraftly-Mina-Sidor/blob/main/docs/architecture.md)
+
+| Fråga                                                      | Var svaret står                                                             |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------- |
+| 1. Starta lokalt, och hur vet jag att den fungerar?        | `README.md`, _Getting started_ + _Logga in_                                 |
+| 2. Var bor hemligheterna, och hur får jag dem?             | `README.md`, _Miljövariabler_ · `docs/decisions/deploy.md`, _Konfiguration_ |
+| 3. Hur når en ändring prod – och hur rullar man tillbaka?  | `README.md`, _Pipeline_ & _Rollback.yml_ · `docs/decisions/deploy.md`       |
+| 4. Varför ser arkitekturen ut så här – var finns besluten? | `docs/architecture.md`, `docs/decisions/README.md`                          |
+| 5. Vad är känt trasigt eller medvetet ogjort?              | `docs/known-issues.md`, `docs/readiness.md`                                 |
