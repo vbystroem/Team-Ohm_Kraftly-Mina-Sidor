@@ -34,6 +34,7 @@
 | Om | Då |
 |---|---|
 | Prod svarar inte | <reserven: skärmdumparna eller inspelningen – och säg vad som skulle synas> |
-| Inloggningen fungerar inte | … |
-| Nätet dör | … |
-| Vi är efter i tid | <vilket moment som stryks först> |
+| Inloggningen fungerar inte | Vi kan visa kod istället för gränssnittet och förklara, eller hotfixa en auth som inte behöver konto |
+| Docker desktop startar inte | Visa compose.yml | 
+| Nätet dör | Vi kör appen lokalt via dev servern |
+| Vi är efter i tid | skippa ett eller flera exempel på OWASP-lösningar, skippa att visa LCP (nämn bara siffran istället), skippa tab-genomgång, sammanfatta kortfattat |
