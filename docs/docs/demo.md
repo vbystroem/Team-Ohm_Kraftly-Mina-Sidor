@@ -13,8 +13,8 @@
 
 | Minut | Vad | Vem | Vad som ska synas |
 |---|---|---|---|
-| 0–1 | Introt | Andryan | <t.ex. tre rader ur docs/debt.md> |
-| 1–3 | Tester - pipeline | Andryan| <fliken, sidan, siffran> |
+| 0–1 | Introt | Andryan | <docs/debt.md> |
+| 1–3 | Tester - pipeline | Andryan| <pipeline.md> |
 | 3-6|Docker (Veronica), Continuous Delivery / Staging och Prod (Veronica), Security / OWASP (Veronica)| Veronica |  | 
 | 6-9| Performance, A11y / UI, AI-implementering  | Kim | Performance – dashboarden med hero-bilden och diagrammet. Resultat från docs/performance.md. A11y / AI – visa tangentbordsnavigering med Tab och Enter samt visa kort KButton.vue, label och Sidan runt komponenterna,  AI-implementering – visa ai-in-pipeline.md.
 | 9–10 | Sammanfattning: vad portalen klarar i dag | Kim, Veronica, Andryan | <prod, en sak> |
