@@ -13,11 +13,14 @@
 
 | Minut | Vad | Vem | Vad som ska synas |
 |---|---|---|---|
-| 0–1 | Introt | Andryan | <docs/debt.md> |
-| 1–3 | Tester - pipeline | Andryan| <pipeline.md> |
-| 3-6|Docker (Veronica), Continuous Delivery / Staging och Prod (Veronica), Security / OWASP (Veronica)| Veronica |  | 
-| 6-9| Performance, A11y / UI, AI-implementering  | Kim | Performance – dashboarden med hero-bilden och diagrammet. Resultat från docs/performance.md. A11y / AI – visa tangentbordsnavigering med Tab och Enter samt visa kort KButton.vue, label och Sidan runt komponenterna,  AI-implementering – visa ai-in-pipeline.md.
-| 9–10 | Sammanfattning: vad portalen klarar i dag | Kim, Veronica, Andryan | <prod, en sak> |
+| 1 | Introt | Andryan | docs/debt.md |
+| 2 | Enhetstester | Andryan | pipeline.md |
+| 3 | Continuous integration | Andryan | pipeline.md |
+| 4 | Docker | Veronica | Docker desktop, web + api | 
+| 5 | Continuous Delivery / Staging och Prod (Veronica) | Veronica | README (mermaid-diagrammet över pipelinen) |
+| 6 |Security / OWASP | Veronica | Security.md (OWASP-genomgången) |
+| 7-9 | Performance, A11y / UI, AI-implementering  | Kim | Performance – dashboarden med hero-bilden och diagrammet. Resultat från docs/performance.md. A11y / AI – visa tangentbordsnavigering med Tab och Enter samt visa kort KButton.vue, label och Sidan runt komponenterna,  AI-implementering – visa ai-in-pipeline.md.
+| 10 | Sammanfattning: vad portalen klarar i dag | Kim, Veronica, Andryan | <prod, en sak> |
 | 10–15 | Frågor | alla | – |
 
 ## Förberedelser
@@ -32,6 +35,7 @@
 | Om | Då |
 |---|---|
 | Prod svarar inte | <reserven: skärmdumparna eller inspelningen – och säg vad som skulle synas> |
+| Docker desktop svarar inte | Ritar ett diagram på whiteboarden lite snabbt | 
 | Inloggningen fungerar inte | … |
 | Nätet dör | … |
 | Vi är efter i tid | <vilket moment som stryks först> |
