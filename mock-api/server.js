@@ -159,7 +159,7 @@ app.post('/api/v2/auth/login', (req, res) => {
   accessTokens.add(token)
   refreshTokens.add(refresh)
   res.cookie(REFRESH_COOKIE, refresh, { httpOnly: true, sameSite: 'lax' })
-  res.json({ token, name: user.name })
+  res.json({ accessToken: token, token, name: user.name })
 })
 
 app.post('/api/v2/auth/refresh', (req, res) => {
@@ -172,7 +172,7 @@ app.post('/api/v2/auth/refresh', (req, res) => {
   }
   const token = newToken()
   accessTokens.add(token)
-  res.json({ token })
+  res.json({ accessToken: token, token })
 })
 
 app.get('/api/v2/user', (req, res) => res.json(user))

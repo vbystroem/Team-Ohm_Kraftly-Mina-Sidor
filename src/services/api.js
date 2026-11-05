@@ -40,7 +40,7 @@ export const refreshAuth = async () => {
     })
     if (!res.ok) return false
     const data = await res.json()
-    setAccessToken(data.token)
+    setAccessToken(data.accessToken || data.token)
     return true
   } catch {
     return false
