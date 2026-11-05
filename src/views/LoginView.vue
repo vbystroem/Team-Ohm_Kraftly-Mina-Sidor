@@ -54,7 +54,7 @@ const handleLogin = async () => {
   error.value = null
   try {
     const data = await login(email.value, password.value)
-    setAccessToken(data.token)
+    setAccessToken(data.accessToken || data.token)
     router.push('/')
   } catch {
     error.value = 'Fel e-post eller lösenord'

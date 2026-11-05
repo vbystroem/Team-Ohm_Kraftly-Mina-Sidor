@@ -1,8 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { fetchUser, fetchConsumption, fetchInvoices } from './api'
+import { fetchUser, fetchConsumption, fetchInvoices, refreshAuth } from './api'
+import { getAccessToken, setAccessToken } from './token'
 
 beforeEach(() => {
   global.fetch = vi.fn()
+  setAccessToken(null)
 })
 
 describe('API', () => {
@@ -29,5 +31,14 @@ describe('API', () => {
       json: () => Promise.resolve({}),
     })
     await expect(fetchInvoices()).rejects.toThrow('API error 401')
+  })
+  it('stores accessToken from refreshAuth response', async () => {
+    fetch.mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({ accessToken: 'jwt-from-api-v2' }),
+    })
+    const refreshed = await refreshAuth()
+    expect(refreshed).toBe(true)
+    expect(getAccessToken()).toBe('jwt-from-api-v2')
   })
 })
